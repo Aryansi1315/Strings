@@ -1,0 +1,26 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class ExtractLongDigitCombinations {
+    public static void main(String[] args) {
+        String fileName = "input.txt"; // Replace with the path to your input file
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName)) ) {
+            String line;
+            Pattern pattern = Pattern.compile("\\d{4,}"); // Matches combinations of 4 or more digits
+
+            while ((line = reader.readLine()) != null) {
+                Matcher matcher = pattern.matcher(line);
+                while (matcher.find()) {
+                    String digitCombination = matcher.group();
+                    System.out.println("Found long digit combination: " + digitCombination);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+        }
+    }
+}
