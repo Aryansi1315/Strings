@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class StringArrayAnalyzer {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Initialize a 2x2 string array
+        String[][] stringArray = new String[2][2];
+
+        // Prompt the user to enter the strings
+        System.out.println("Enter 4 strings to fill the 2x2 array:");
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                System.out.print("Enter string at position [" + i + "][" + j + "]: ");
+                stringArray[i][j] = scanner.nextLine();
+            }
+        }
+
+        // Find strings with more than two identical characters
+        System.out.println("Strings with more than two identical characters:");
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (hasMoreThanTwoIdenticalChars(stringArray[i][j])) {
+                    System.out.println("Position [" + i + "][" + j + "]: " + stringArray[i][j]);
+                }
+            }
+        }
+
+        scanner.close();
+    }
+
+    public static boolean hasMoreThanTwoIdenticalChars(String input) {
+        for (int i = 0; i < input.length(); i++) {
+            char currentChar = input.charAt(i);
+            int count = 0;
+            for (int j = 0; j < input.length(); j++) {
+                if (input.charAt(j) == currentChar) {
+                    count++;
+                }
+                if (count > 2) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
